@@ -21,8 +21,7 @@ func InsertoRegistro(u models.Usuario) (string, bool, error) {
 	result, err := col.InsertOne(ctx, u)
 
 	if err != nil {
-		return "", false,
-			err
+		return "", false, err
 	}
 
 	ObjID, _ := result.InsertedID.(primitive.ObjectID)
