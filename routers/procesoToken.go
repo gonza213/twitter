@@ -17,7 +17,7 @@ var IDUsuario string
 
 //ProcesoToken
 func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
-	miClave := []byte("Bobby2020")
+	miClave := []byte("Bobby2019")
 	claims := &models.Claim{}
 
 	splitToken := strings.Split(tk, "Bearer")
