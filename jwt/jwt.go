@@ -10,7 +10,7 @@ import (
 //GeneroJWT
 func GeneroJWT(t models.Usuario) (string, error) {
 
-	miClave := []byte("Bobby")
+	miClave := []byte("Bobby2020")
 
 	payload := jwt.MapClaims{
 		"email":           t.Email,
@@ -19,7 +19,7 @@ func GeneroJWT(t models.Usuario) (string, error) {
 		"fechaNacimiento": t.FechaNacimiento,
 		"biografia":       t.Biografia,
 		"ubicacion":       t.Ubicacion,
-		"sitioWeb":        t.SitioWeb,
+		"SitioWeb":        t.SitioWeb,
 		"_id":             t.ID.Hex(),
 		"exp":             time.Now().Add(time.Hour * 24).Unix(),
 	}

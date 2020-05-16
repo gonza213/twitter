@@ -17,10 +17,11 @@ var IDUsuario string
 
 //ProcesoToken
 func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
-	miClave := []byte("Bobby")
+	miClave := []byte("Bobby2020")
 	claims := &models.Claim{}
 
 	splitToken := strings.Split(tk, "Bearer")
+
 	if len(splitToken) != 2 {
 		return claims, false, string(""), errors.New("formato de token inválido")
 	}
@@ -30,7 +31,8 @@ func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
 	tkn, err := jwt.ParseWithClaims(tk, claims, func(token *jwt.Token) (interface{}, error) {
 		return miClave, nil
 	})
-	if err == nil {
+
+	if err != nil {
 		_, encontrado, _ := bd.ChequeoYaExisteUsuario(claims.Email)
 		if encontrado == true {
 			Email = claims.Email
@@ -38,9 +40,9 @@ func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
 		}
 		return claims, encontrado, IDUsuario, nil
 	}
-	if !tkn.Valid {
-		return claims, false, string(""), errors.New("Token Inválido")
-	}
 
+	if !tkn.Valid {
+		return claims, false, string(""), errors.New("token inválido")
+	}
 	return claims, false, string(""), err
 }
